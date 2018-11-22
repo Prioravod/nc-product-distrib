@@ -9,6 +9,9 @@ public class Factory {
 	private String factoryName;
 	private List<ProductionItem> production;
 	
+	/** Production unit, describes the type of object produced 
+	 *  and the performance over a period of time (the number of units per year) 
+	 */
 	public class ProductionItem {
 		private Product item;
 		private int performance;

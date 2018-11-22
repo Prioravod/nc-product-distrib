@@ -1,25 +1,27 @@
 package model;
 
-import java.time.LocalDateTime;
-
-public class Juice extends Product {
-	private static int curr_id;
+public class Juice extends Product {	
 	private int volume; // in ml
 
-	public Juice(String productName, int shelfLife, long price, int volume) {
-		this.id = curr_id++;
+	public Juice(String productName, long price, int volume) {
 		this.productName = productName;
-		this.manufDate = LocalDateTime.now();
-		this.disqDate = LocalDateTime.now().plusMonths(shelfLife);
 		this.price = price;	
 		this.volume = volume;
 	}
 	
 	public void setDescription(String discription) {
-		this.discription = discription;
-		
+		this.discription = discription;		
 	}
-	
-	
-
+	@Override
+	public String toString() {
+		return productName + " " + (volume/1000) + " litres / " + price + " rubles";
+	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj) return true;
+//		if (obj.equals(null)) return false;
+//		if (
+//				((Juice)obj).productName == this.productName;
+//				((Juice)obj).)
+//	}
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Shop {
@@ -36,18 +37,39 @@ public class Shop {
 	}
 	
 	public void addItem(Product item, int currItemsCount) {
-		Stream stream = products.stream().filter(x -> x.item.id == item.id);
+		Stream stream = products.stream().
+				filter(x -> x.item.getClass() == item.getClass() && x.item.productName == item.productName);
 		if (stream.count() == 0) {
 			products.add(new CommodityItem(item, currItemsCount));
 		}
 		CommodityItem ci = (CommodityItem) stream.findFirst().get();
 		ci.currItemsCount += currItemsCount;		
 	}
-	public List<Class<?>> buyItem(Class<?> cl, int needCount) {
-		if (products.stream().filter(x -> x.getClass() == cl).count() == 0) return null;
-		CommodityItem ci = products.stream().filter(x -> x.item.id == item.id).findFirst().get();
-		ci.currItemsCount += currItemsCount;		
-		
+//	public List<Product> buyItem(Class<?> cl, String name, int needCount) {
+//		int loss = 0;
+//		CommodityItem foundProduct = products.stream()
+//				.filter(x -> x.item.getClass() == cl && x.item.productName == name)
+//				.findFirst()
+//				.get();
+//		if (foundProduct.equals(null) && foundProduct.currItemsCount == 0) {
+//			loss = needCount;
+//			return null;
+//		}
+//		return products.stream().filter(x -> x.item.getClass() == cl).map(x -> x.item).collect(Collectors.toList());
+//	}
+	public List<Product> buyItem(Product item, int needCount){
+		Stream stream = products.stream().
+				filter(x -> x.item.getClass() == item.getClass() && x.item == item);
+		if (stream.count() == 0) {
+			return null;
+		}
+		CommodityItem ci = (CommodityItem) stream.findFirst().get();
+		List<Product> lst = new ArrayList<>();
+		for (int i=0;i<needCount && ci.currItemsCount > 0;i++) {
+			ci.currItemsCount--;
+			lst.add(ci.item);
+		}
+		return lst;
 	}
 	
 }
