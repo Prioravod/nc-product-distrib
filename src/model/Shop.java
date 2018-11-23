@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/** Shop with 
+ *  location and 
+ *  list of products sold
+ */
 public class Shop {
 	private static int curr_id;
 	public int id;
@@ -12,6 +16,11 @@ public class Shop {
 	public Geotag location;
 	public List<CommodityItem> products;
 	
+	/** A commodity item stores in itself 
+	 *  the type of goods, 
+	 *  the quantity of goods in stock and 
+	 *  the total quantity of goods of this type that can fit in a warehouse.
+	 */
 	public class CommodityItem {
 		public Product item;
 		public int allItemsCount = 15;
@@ -28,6 +37,13 @@ public class Shop {
 			this.currItemsCount = currItemsCount;
 		}	
 	}
+	
+	public CommodityItem addCommodityItem(Product item, int currItemsCount) {
+		return new CommodityItem(item, currItemsCount);
+	}
+	public CommodityItem addCommodityItem(Product item, int allItemsCount, int currItemsCount) {
+		return new CommodityItem(item, allItemsCount, currItemsCount);
+	}
 
 	public Shop(String shopName, Geotag location) {
 		this.id = curr_id++;
@@ -35,41 +51,4 @@ public class Shop {
 		this.location = location;
 		this.products = new ArrayList<>();
 	}
-	
-	public void addItem(Product item, int currItemsCount) {
-		Stream stream = products.stream().
-				filter(x -> x.item.getClass() == item.getClass() && x.item.productName == item.productName);
-		if (stream.count() == 0) {
-			products.add(new CommodityItem(item, currItemsCount));
-		}
-		CommodityItem ci = (CommodityItem) stream.findFirst().get();
-		ci.currItemsCount += currItemsCount;		
-	}
-//	public List<Product> buyItem(Class<?> cl, String name, int needCount) {
-//		int loss = 0;
-//		CommodityItem foundProduct = products.stream()
-//				.filter(x -> x.item.getClass() == cl && x.item.productName == name)
-//				.findFirst()
-//				.get();
-//		if (foundProduct.equals(null) && foundProduct.currItemsCount == 0) {
-//			loss = needCount;
-//			return null;
-//		}
-//		return products.stream().filter(x -> x.item.getClass() == cl).map(x -> x.item).collect(Collectors.toList());
-//	}
-	public List<Product> buyItem(Product item, int needCount){
-		Stream stream = products.stream().
-				filter(x -> x.item.getClass() == item.getClass() && x.item == item);
-		if (stream.count() == 0) {
-			return null;
-		}
-		CommodityItem ci = (CommodityItem) stream.findFirst().get();
-		List<Product> lst = new ArrayList<>();
-		for (int i=0;i<needCount && ci.currItemsCount > 0;i++) {
-			ci.currItemsCount--;
-			lst.add(ci.item);
-		}
-		return lst;
-	}
-	
 }

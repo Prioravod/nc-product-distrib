@@ -2,13 +2,17 @@ package model;
 
 import java.time.LocalDateTime;
 
+/** Human who has 
+ *  full name and 
+ *  date of birth
+ */
 public class Human {
 	private static int curr_id;
-	private int id;
-	private String firstName;
-	private String surName;
-	private String patronymic;
-	private LocalDateTime borningDate;
+	public int id;
+	public String firstName;
+	public String surName;
+	public String patronymic;
+	public LocalDateTime borningDate;
 	
 	public Human(String firstName) {
 		this.id = curr_id++;

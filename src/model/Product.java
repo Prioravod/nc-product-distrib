@@ -4,10 +4,11 @@ package model;
  *  the base state of the object to children, 
  *  is the parent for all classes describing food */
 public abstract class Product {
-	protected int id;
-	protected String productName;
-	protected String discription;
-	protected long price;	
+	public int id;
+	public String productName;
+	public String discription;
+	public Company company;
+	public long price;	
 	private static int curr_id;
 	
 	public Product() {
@@ -24,5 +25,9 @@ public abstract class Product {
 				((Product)obj).price == this.price
 			) return true;
 		return false;
+	}
+	@Override
+	public int hashCode() {
+		return id+productName.chars().reduce((x,y)->(x+y)).getAsInt();
 	}
 }

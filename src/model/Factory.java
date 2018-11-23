@@ -1,37 +1,35 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/** Factory producing 
+ *  a certain type of product with 
+ *  a certain performance
+ */
 public class Factory {
 	private static int curr_id;
-	private int id;
-	private String factoryName;
-	private List<ProductionItem> production;
+	public int id;
+	public String factoryName;
+	public ProductionItem production;
 	
-	/** Production unit, describes the type of object produced 
-	 *  and the performance over a period of time (the number of units per year) 
+	/** Production unit, describes 
+	 *  the type of object produced and 
+	 *  the performance over a period of time (the number of units per year) 
 	 */
 	public class ProductionItem {
-		private Product item;
-		private int performance;
+		public Product item;
+		public int performance;
 		public ProductionItem(Product item, int performance) {
 			this.item = item;
 			this.performance = performance;
 		}		
 	}
 	
-	public Factory(String factoryName) {
+	public Factory(String factoryName,Product product,int performance) {
 		this.id = curr_id++;
-		this.factoryName = factoryName;
-		this.production = new ArrayList<>();
+		this.factoryName = factoryName+id;
+		this.production = new ProductionItem(product,performance);
 	}
 
-	public void setProductionItem(Product product,int performance) {
-		production.add(new ProductionItem(product,performance));
+	public void setAnotherProduction(Product product,int performance) {
+		production = new ProductionItem(product,performance);
 	}
-
-	
-	
-	
 }
