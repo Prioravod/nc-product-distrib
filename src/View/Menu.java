@@ -18,7 +18,7 @@ public class Menu {
 		boolean notExit = true;
 		List<Shop> shopList = new ArrayList<>(); //static database with list of all shops
 		while(notExit) {
-			switch(choose("Покупатель","Продавец")) {
+			switch(choose("Buyer","Provider")) {
 			case 0:
 				selectShop(shopList);
 				break;
@@ -34,7 +34,7 @@ public class Menu {
 	private void checkGoodsAvail() {
 		boolean notExit = true;
 		while(notExit) {
-			switch(choose("Отправить товар")) {
+			switch(choose("Send goods")) {
 			case 0:
 				sendGoods();
 				break;
@@ -59,13 +59,14 @@ public class Menu {
 		while(notExit) {
 			int prodChoose = choose(productList.toArray(new String[productList.size()]));
 			printT();
-			System.out.println("Введите кол-во: ");
+			System.out.println("Enter the number of goods: ");
+			//add check for availability goods and cutomer money 
 			printT();
 			Scanner in = new Scanner(System.in);
 			int count = in.nextInt();
 			sm.buyItem(productList.get(prodChoose),count);
 			//add charge off customer cash/card
-			System.out.println("Успешно куплено!");
+			System.out.println("Successfully purchased!");
 		}
 	}
 	
@@ -76,13 +77,13 @@ public class Menu {
 		int choose = 0;
 		boolean input = false;
 		printT();
-		System.out.println("Выберите ответ:");
+		System.out.println("Choose the answer:");
 		for(String op : options) {
 			printT();
 			System.out.println(i++ + ") " + op + ";");
 		}
 		printT();
-		System.out.println(i++ + ") Назад;");
+		System.out.println(i++ + ") Back;");
 		Scanner in = new Scanner(System.in);
 		while(input == false) {
 			printT();
@@ -91,7 +92,7 @@ public class Menu {
 			if (choose > 0 && choose <= i) input = true;
 			else {
 				printT();
-				System.out.println("Ошибка ввода");
+				System.out.println("Enter error!");
 			}
 		}
 		tab++;
