@@ -6,10 +6,10 @@ package model;
  */
 public class Geotag {
 	private String name;
-	public float latitude;
-	public float longitude;
+	public double latitude;
+	public double longitude;
 	
-	public Geotag(String name, float latitude, float longitude) {
+	public Geotag(String name, double latitude, double longitude) {
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;

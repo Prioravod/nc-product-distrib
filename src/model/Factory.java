@@ -2,13 +2,15 @@ package model;
 
 /** Factory producing 
  *  a certain type of product with 
- *  a certain performance
+ *  a certain performance and 
+ *  geotag
  */
 public class Factory {
 	private static int curr_id;
 	public int id;
 	public String factoryName;
 	public ProductionItem production;
+	public Geotag geotag;
 	
 	/** Production unit, describes 
 	 *  the type of object produced and 
@@ -22,11 +24,16 @@ public class Factory {
 			this.performance = performance;
 		}		
 	}
-	
 	public Factory(String factoryName,Product product,int performance) {
 		this.id = curr_id++;
 		this.factoryName = factoryName+id;
 		this.production = new ProductionItem(product,performance);
+	}
+	public Factory(String factoryName,Product product,int performance,Geotag geotag) {
+		this.id = curr_id++;
+		this.factoryName = factoryName+id;
+		this.production = new ProductionItem(product,performance);
+		this.geotag = geotag;
 	}
 
 	public void setAnotherProduction(Product product,int performance) {

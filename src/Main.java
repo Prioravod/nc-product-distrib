@@ -1,21 +1,22 @@
 import java.util.ArrayList;
 import java.util.List;
+import BL.*;
+import model.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-
-
-		List<Product> lst = new ArrayList<>();
-		lst.add(new Juice("Dobryi",1.5f));
-		lst.add(new Juice("Ya",1f));
-		lst.add(new Nuts("Greece",1f));
-		lst.add(new Juice("My family",2f));
-		System.out.println("Assortment:");
-		lst.stream().forEach(System.out::println);
+//		List<Product> lst = new ArrayList<>();
+//		lst.add(new Juice("Dobryi",1.5f));
+//		lst.add(new Juice("Ya",1f));
+//		lst.add(new Nuts("Greece",1f));
+//		lst.add(new Juice("My family",2f));
+//		System.out.println("Assortment:");
+//		lst.stream().forEach(System.out::println);
 		
+//		double d = CalculateTransfer.getVector(new Geotag("kremlin",55.750968d,37.617156d), new Geotag("myhouse",51.602973d,45.978380d));
+//		System.out.println(d);
 		
-
 	}
 
 }

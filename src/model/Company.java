@@ -6,7 +6,7 @@ import java.util.List;
 
 /** Company that stores information 
  *  about its factories and 
- *  accepts demands from stores *  
+ *  accepts demands from stores 
  */
 public class Company{
 	private static int curr_id;
