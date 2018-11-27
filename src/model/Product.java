@@ -30,4 +30,5 @@ public abstract class Product {
 	public int hashCode() {
 		return id+productName.chars().reduce((x,y)->(x+y)).getAsInt();
 	}
+	
 }

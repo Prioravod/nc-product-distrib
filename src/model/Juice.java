@@ -19,6 +19,6 @@ public class Juice extends Product {
 	}
 	@Override
 	public String toString() {
-		return productName + " " + (volume/1000) + " litres / " + price + " rubles";
+		return productName + " '" + company.companyName + "' " + (volume/1000) + " litres / " + price + " rubles";
 	}
 }

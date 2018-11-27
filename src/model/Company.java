@@ -18,12 +18,12 @@ public class Company{
 	public Human ceo;
 	public List<Factory> factories = new ArrayList<>();;
 	
-	public Company(int id, String companyName) {
+	public Company(String companyName) {
 		this.id = curr_id++;
 		this.companyName = companyName;
 	}
 
-	public Company(int id, String companyName, LocalDateTime foundingDate, Geotag headquarter, Human ceo) {
+	public Company(String companyName, LocalDateTime foundingDate, Geotag headquarter, Human ceo) {
 		this.id = curr_id++;
 		this.companyName = companyName;
 		this.foundingDate = foundingDate;

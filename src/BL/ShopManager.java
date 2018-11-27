@@ -1,6 +1,7 @@
 package BL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,16 +19,15 @@ public class ShopManager {
 		this.shop = shop;
 	}
 	public void addItem(Product item, int currItemsCount) {
-		Stream stream = shop.products.stream().
-				filter(x -> x.item.getClass() == item.getClass() && x.item.productName == item.productName);
-		if (stream.count() == 0) {
-			shop.products.add(shop.addCommodityItem(item, currItemsCount));
+		Optional<CommodityItem> ci = shop.products.stream().
+				filter(x -> x.item.getClass() == item.getClass() && x.item.productName == item.productName).findFirst();
+		if (ci.isPresent()) {
+			ci.get().currItemsCount += currItemsCount;	
 		}
-		CommodityItem ci = (CommodityItem) stream.findFirst().get();
-		ci.currItemsCount += currItemsCount;		
+		else shop.products.add(shop.addCommodityItem(item, currItemsCount));		
 	}
 	public List<Product> buyItem(Product item, int needCount){
-		Stream stream = shop.products.stream().
+		Stream<CommodityItem> stream = shop.products.stream().
 				filter(x -> x.item.getClass() == item.getClass() && x.item == item);
 		if (stream.count() == 0) {
 			return null;
@@ -47,6 +47,9 @@ public class ShopManager {
 	}
 	public List<Product> productList() {
 		return shop.products.stream().map(x -> x.item).collect(Collectors.toList());
+	}
+	public List<String> productNameList() {
+		return shop.products.stream().map(x -> x.item).map(x -> x.toString()).collect(Collectors.toList());
 	}
 	public int getProductCurrCount(Product product) {
 		return shop.products.stream().filter(x -> x.item==product).findFirst().get().currItemsCount;

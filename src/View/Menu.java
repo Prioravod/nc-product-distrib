@@ -1,8 +1,11 @@
 package View;
 
+import DAL.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import BL.*;
 import model.*;
@@ -16,7 +19,7 @@ public class Menu {
 	}
 	private void chooseRole() {
 		boolean notExit = true;
-		List<Shop> shopList = new ArrayList<>(); //static database with list of all shops
+		List<Shop> shopList = Static.shopBase; //static database with list of all shops
 		while(notExit) {
 			switch(choose("Buyer","Provider")) {
 			case 0:
@@ -48,23 +51,30 @@ public class Menu {
 	private void selectShop(List<Shop> shopList) {
 		boolean notExit = true;		
 		while(notExit) {
-			int shopChoose = choose(shopList.toArray(new String[shopList.size()]));
-			selectGoods(shopList.get(shopChoose));
+			List<String> shopNames = shopList.stream().map(x -> x.shopName).collect(Collectors.toList());
+			int shopChoose = choose(shopNames.toArray(new String[shopNames.size()]));
+			if (shopChoose==shopNames.size()) {
+				notExit = false;
+				tab = 0;
+			}
+			else selectGoods(shopList.get(shopChoose));
 		}
 	}
 	private void selectGoods(Shop shop) {
 		ShopManager sm = new ShopManager(shop);
-		List<Product> productList = sm.productList();
+		List<String> productNameList = sm.productNameList();
 		boolean notExit = true;		
 		while(notExit) {
-			int prodChoose = choose(productList.toArray(new String[productList.size()]));
+			int prodChoose = choose(productNameList.toArray(new String[productNameList.size()]));
 			printT();
-			System.out.println("Enter the number of goods: ");
+			int availCount = sm.getProductCurrCount(sm.productList().get(prodChoose));
+			System.out.println("Enter the number of goods (1 - " + availCount + ") : ");
+			
 			//add check for availability goods and cutomer money 
 			printT();
 			Scanner in = new Scanner(System.in);
 			int count = in.nextInt();
-			sm.buyItem(productList.get(prodChoose),count);
+			sm.buyItem(sm.productList().get(prodChoose),count);
 			//add charge off customer cash/card
 			System.out.println("Successfully purchased!");
 		}
@@ -83,13 +93,13 @@ public class Menu {
 			System.out.println(i++ + ") " + op + ";");
 		}
 		printT();
-		System.out.println(i++ + ") Back;");
+		System.out.println(i + ") Back;");
 		Scanner in = new Scanner(System.in);
 		while(input == false) {
 			printT();
 			System.out.print("(0-"+i+") : ");
 			choose = in.nextInt();
-			if (choose > 0 && choose <= i) input = true;
+			if (choose >= 0 && choose <= i) input = true;
 			else {
 				printT();
 				System.out.println("Enter error!");

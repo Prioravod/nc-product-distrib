@@ -12,7 +12,6 @@ public class CompanyManager {
 	}
 
 	public void getDemand(Demand demand) {
-		Demand d = demand;
 		if (company.factories.size()==0 || 
 				company
 				.factories.stream()

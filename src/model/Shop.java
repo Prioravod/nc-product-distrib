@@ -23,12 +23,13 @@ public class Shop {
 	 */
 	public class CommodityItem {
 		public Product item;
-		public int allItemsCount = 15;
+		public int allItemsCount = 100;
 		public int currItemsCount;
 		
 		public CommodityItem(Product item, int currItemsCount) {
 			this.item = item;
 			this.currItemsCount = currItemsCount;
+			//this.allItemsCount = currItemsCount;
 		}	
 		
 		public CommodityItem(Product item, int allItemsCount, int currItemsCount) {
@@ -38,17 +39,16 @@ public class Shop {
 		}	
 	}
 	
-	public CommodityItem addCommodityItem(Product item, int currItemsCount) {
-		return new CommodityItem(item, currItemsCount);
-	}
-	public CommodityItem addCommodityItem(Product item, int allItemsCount, int currItemsCount) {
-		return new CommodityItem(item, allItemsCount, currItemsCount);
-	}
-
 	public Shop(String shopName, Geotag location) {
 		this.id = curr_id++;
 		this.shopName = shopName;
 		this.location = location;
 		this.products = new ArrayList<>();
+	}
+	public CommodityItem addCommodityItem(Product item, int currItemsCount) {
+		return new CommodityItem(item, currItemsCount);
+	}
+	public CommodityItem addCommodityItem(Product item, int allItemsCount, int currItemsCount) {
+		return new CommodityItem(item, allItemsCount, currItemsCount);
 	}
 }
