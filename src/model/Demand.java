@@ -3,6 +3,9 @@ package model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /** Demand that stores information about 
  *  existing companies, 
  *  the required product, 
@@ -11,17 +14,18 @@ import java.util.List;
  *  the store where the request came from
  */
 public class Demand {
-	private static int curr_id;
-	public static List<Company> companies;
-	public int id;
-	public Product productType;
-	public int count;
-	public LocalDateTime date;
-	public Shop shop;
+	
+	private static int currId;
+	@Getter private int id;
+	@Getter @Setter private static List<Company> companies;
+	@Getter @Setter private Product productType;
+	@Getter @Setter private int count;
+	@Getter @Setter private LocalDateTime date;
+	@Getter @Setter private Shop shop;
 	
 	
 	public Demand(Product productType, int count,Shop shop) {
-		this.id = curr_id++;
+		this.id = currId++;
 		this.productType = productType;
 		this.count = count;
 		this.date = LocalDateTime.now();

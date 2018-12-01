@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import BL.*;
+
+import controllers.*;
 import model.*;
 
 public class Main {

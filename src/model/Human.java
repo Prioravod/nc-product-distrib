@@ -1,32 +1,34 @@
 package model;
 
 import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
 /** Human who has 
  *  full name and 
  *  date of birth
  */
 public class Human {
-	private static int curr_id;
-	public int id;
-	public String firstName;
-	public String surName;
-	public String patronymic;
-	public LocalDateTime borningDate;
+	private static int currId;
+	@Getter private int id;
+	@Getter @Setter private String firstName;
+	@Getter @Setter private String surName;
+	@Getter @Setter private String patronymic;
+	@Getter @Setter private LocalDateTime borningDate;
 	
 	public Human(String firstName) {
-		this.id = curr_id++;
+		this.id = currId++;
 		this.firstName = firstName;
 	}
 	
 	public Human(String firstName, String surName) {
-		this.id = curr_id++;
+		this.id = currId++;
 		this.firstName = firstName;
 		this.surName = surName;
 	}
 
 	public Human(String firstName, String surName, String patronymic, LocalDateTime borningDate) {
-		this.id = curr_id++;
+		this.id = currId++;
 		this.firstName = firstName;
 		this.surName = surName;
 		this.patronymic = patronymic;

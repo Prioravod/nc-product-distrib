@@ -1,4 +1,4 @@
-package BL;
+package controllers;
 
 import java.util.*;
 
@@ -11,8 +11,8 @@ public class FactoryManager {
 	public FactoryManager(Company company) {
 		this.company = company;
 	}
-	public void addNewFactory(Product item,int performance) {
-		factory.add(new Factory(company.companyName,item,performance));
+	public void addNewFactory(Product item) {
+		factory.add(new Factory(company.getCompanyName(),item));
 	}
 	
 

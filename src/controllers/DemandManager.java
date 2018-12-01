@@ -1,4 +1,4 @@
-package BL;
+package controllers;
 
 import model.*;
 
@@ -11,7 +11,7 @@ public class DemandManager {
 	}
 	private void sendDemand() {
 		if (companyManager == null) {
-			Company company = Demand.companies.stream().filter(x -> x == demand.productType.company).findFirst().get();
+			Company company = Demand.getCompanies().stream().filter(x -> x == demand.getProductType().getCompany()).findFirst().get();
 			companyManager = new CompanyManager(company);
 		}
 		companyManager.getDemand(demand);

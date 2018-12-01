@@ -1,10 +1,9 @@
-package BL;
+package controllers;
 
 import model.*;
 
 public class CompanyManager {
 	private Company company;
-	private int defaultPerformance = 15;
 	private FactoryManager factoryManager = new FactoryManager(company);
 	
 	public CompanyManager(Company company) {
@@ -12,11 +11,11 @@ public class CompanyManager {
 	}
 
 	public void getDemand(Demand demand) {
-		if (company.factories.size()==0 || 
+		if (company.getFactories().size()==0 || 
 				company
-				.factories.stream()
-				.map(fact -> fact.production.item == demand.productType).findFirst() == null) {
-				factoryManager.addNewFactory(demand.productType,defaultPerformance);;		
+				.getFactories().stream()
+				.map(fact -> fact.getProduction().item == demand.getProductType()).findFirst() == null) {
+				factoryManager.addNewFactory(demand.getProductType());;		
 		}
 	}
 

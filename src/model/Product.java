@@ -1,18 +1,25 @@
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /** Abstract class that defines 
  *  the base state of the object to children, 
  *  is the parent for all classes describing food */
 public abstract class Product {
-	public int id;
-	public String productName;
-	public String discription;
-	public Company company;
-	public long price;	
-	private static int curr_id;
 	
-	public Product() {
-		this.id = curr_id++;
+	private static int currId;
+	@Getter private int id;
+	@Getter @Setter private String productName;
+	@Getter @Setter private String discription;
+	@Getter @Setter private Company company;
+	@Getter @Setter private long price;		
+	
+	public Product(Company company,String productName, long price) {
+		this.company = company;
+		this.productName = productName;
+		this.price = price;	
+		this.id = currId++;
 	}
 	
 	@Override

@@ -1,16 +1,20 @@
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /** Factory producing 
  *  a certain type of product with 
  *  a certain performance and 
  *  geotag
  */
 public class Factory {
-	private static int curr_id;
-	public int id;
-	public String factoryName;
-	public ProductionItem production;
-	public Geotag geotag;
+	private static int currId;
+	@Getter private int id;
+	@Getter @Setter private String factoryName;
+	@Getter @Setter private ProductionItem production;
+	@Getter @Setter private int defaultPerformance = 15;
+	@Getter @Setter private Geotag geotag;
 	
 	/** Production unit, describes 
 	 *  the type of object produced and 
@@ -24,15 +28,15 @@ public class Factory {
 			this.performance = performance;
 		}		
 	}
-	public Factory(String factoryName,Product product,int performance) {
-		this.id = curr_id++;
+	public Factory(String factoryName,Product product) {
+		this.id = currId++;
 		this.factoryName = factoryName+id;
-		this.production = new ProductionItem(product,performance);
+		this.production = new ProductionItem(product,defaultPerformance);
 	}
-	public Factory(String factoryName,Product product,int performance,Geotag geotag) {
-		this.id = curr_id++;
+	public Factory(String factoryName,Product product,Geotag geotag) {
+		this.id = currId++;
 		this.factoryName = factoryName+id;
-		this.production = new ProductionItem(product,performance);
+		this.production = new ProductionItem(product,defaultPerformance);
 		this.geotag = geotag;
 	}
 
