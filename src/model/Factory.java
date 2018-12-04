@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.Visitable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,7 @@ import lombok.Setter;
  *  a certain performance and 
  *  geotag
  */
-public class Factory {
+public class Factory implements Visitable{
 	private static int currId;
 	@Getter private int id;
 	@Getter @Setter private String factoryName;

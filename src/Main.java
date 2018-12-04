@@ -17,7 +17,6 @@ public class Main {
 		
 //		double d = CalculateTransfer.getVector(new Geotag("kremlin",55.750968d,37.617156d), new Geotag("myhouse",51.602973d,45.978380d));
 //		System.out.println(d);
-		
 	}
 
 }

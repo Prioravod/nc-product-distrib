@@ -1,6 +1,6 @@
 package model;
 
-import model.interfaces.Truckable;
+import interfaces.Truckable;
 import lombok.Getter;
 
 public enum TransportType implements Truckable{
@@ -8,7 +8,6 @@ public enum TransportType implements Truckable{
 		@Getter int commercialSpeed = 10;
 		@Getter int capacity = 400;
 		@Getter long mileageCost = 2000;
-
 	}, 
 	ROADTRAIN{
 		@Getter int commercialSpeed = 50;

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import model.*;
 import model.Shop.CommodityItem;
 
-public class ShopManager {
+public class ShopManager{
 	
 	private Shop shop;
 	
@@ -55,5 +55,8 @@ public class ShopManager {
 	}
 	public int getProductCurrCount(Product product) {
 		return shop.getProducts().stream().filter(x -> x.getItem()==product).findFirst().get().getCurrItemsCount();
+	}
+	public void acceptCargo(Class<Product> productType, int count) {
+		//taking the cargo and adding it to the store
 	}
 }
