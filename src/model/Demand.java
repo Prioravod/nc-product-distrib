@@ -1,8 +1,6 @@
 package model;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +15,6 @@ public class Demand {
 	
 	private static int currId;
 	@Getter private int id;
-	@Getter @Setter private static List<Company> companies;
 	@Getter @Setter private Product productType;
 	@Getter @Setter private int count;
 	@Getter @Setter private LocalDateTime date;

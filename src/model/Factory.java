@@ -1,7 +1,9 @@
 package model;
 
-import interfaces.Visitable;
+import java.util.List;
+
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 /** Factory producing 
@@ -9,13 +11,14 @@ import lombok.Setter;
  *  a certain performance and 
  *  geotag
  */
-public class Factory implements Visitable{
+public class Factory{
 	private static int currId;
 	@Getter private int id;
 	@Getter @Setter private String factoryName;
 	@Getter @Setter private ProductionItem production;
 	@Getter @Setter private int defaultPerformance = 15;
-	@Getter @Setter private Geotag geotag;
+	@Getter @Setter @NonNull private Geotag geotag;
+	@Getter @Setter private List<Transport> transportList;
 	
 	/** Production unit, describes 
 	 *  the type of object produced and 
@@ -29,14 +32,9 @@ public class Factory implements Visitable{
 			this.performance = performance;
 		}		
 	}
-	public Factory(String factoryName,Product product) {
+	public Factory(String companyName,Product product,Geotag geotag) {
 		this.id = currId++;
-		this.factoryName = factoryName+id;
-		this.production = new ProductionItem(product,defaultPerformance);
-	}
-	public Factory(String factoryName,Product product,Geotag geotag) {
-		this.id = currId++;
-		this.factoryName = factoryName+id;
+		this.factoryName = companyName+id;
 		this.production = new ProductionItem(product,defaultPerformance);
 		this.geotag = geotag;
 	}

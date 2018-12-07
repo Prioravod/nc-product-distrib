@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.Static;
 import model.*;
 
 public class DemandManager {
@@ -11,7 +12,7 @@ public class DemandManager {
 	}
 	private void sendDemand() {
 		if (companyManager == null) {
-			Company company = Demand.getCompanies().stream().filter(x -> x == demand.getProductType().getCompany()).findFirst().get();
+			Company company = Static.companyBase.stream().filter(x -> x == demand.getProductType().getCompany()).findFirst().get();
 			companyManager = new CompanyManager(company);
 		}
 		companyManager.getDemand(demand);

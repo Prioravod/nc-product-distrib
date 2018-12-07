@@ -9,6 +9,7 @@ import model.*;
 public class Static {
 	public static List<Shop> shopBase = new ArrayList<>();
 	public static List<Company> companyBase = new ArrayList<>();
+	
 	static {
 		Shop pc = new Shop("Pyatorochka-Chemodurova", new Geotag("Chemodurova,14",51.607446d, 45.975488d));
 		Shop pt = new Shop("Pyatorochka-Tarhova", new Geotag("Tarhova,14",51.610580d, 45.982037d));

@@ -17,7 +17,4 @@ public class Geotag {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-
-
-
 }

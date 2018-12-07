@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.Visitable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,7 @@ import lombok.Setter;
  *  location and 
  *  list of products sold
  */
-public class Shop implements Visitable{
+public class Shop{
 	
 	private static int currId;
 	@Getter private int id;

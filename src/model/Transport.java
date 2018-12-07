@@ -1,13 +1,14 @@
 package model;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
+import controllers.FactoryManager;
 import interfaces.Visitable;
 import lombok.Getter;
 import lombok.Setter;
-import model.Shop.CommodityItem;
 
-public class Transport {
+public class Transport{
 	
 	@Getter @Setter private String brand;
 	@Getter @Setter private String model;
@@ -15,26 +16,24 @@ public class Transport {
 	@Getter private TransportType type;
 	@Getter @Setter private Factory ownerFactory;
 	@Getter @Setter private Visitable currentVisitablePlace;
-	@Getter @Setter private List<Route> routeList;
-	@Getter @Setter private List<Cargo> cargo;
+	@Getter @Setter private Map<Visitable,Map<Product,Integer>> routeList;
+	@Getter @Setter private boolean transit = false;
 	
 	
-	public Transport(String stateNumber, TransportType type, Factory factory) {
+	public Transport(String stateNumber, TransportType type, FactoryManager factoryManager) {
 		this.stateNumber = stateNumber;
 		this.type = type;
-		this.ownerFactory = factory;
-		this.currentVisitablePlace = factory;
+		this.ownerFactory = factoryManager.getFactory();
+		this.currentVisitablePlace = factoryManager;
+		this.routeList = new HashMap<>();
 	}
-	public class Cargo{
-		@Getter @Setter private Class<Product> cargoType;		
-		@Getter @Setter private int cargoCount;
-		
-		public Cargo(Class<Product> cargoType, int cargoCount) {
-			this.cargoType = cargoType;
-			this.cargoCount = cargoCount;
-		}
+
+
+	@Override
+	public String toString() {
+		return this.type.name() + " (" + this.stateNumber + ") owner: " + this.ownerFactory.getFactoryName() + 
+				" load: " + routeList.isEmpty() + " in transit: " + this.transit;
 	}
-	public Cargo addCargo(Class<Product> cargoType, int cargoCount) {
-		return new Cargo(cargoType, cargoCount);
-	}
+	
+	
 }
