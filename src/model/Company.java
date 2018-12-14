@@ -20,4 +20,28 @@ public class Company{
 		this.id = currId++;
 		this.companyName = companyName;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Company other = (Company) obj;
+		if (companyName != other.companyName)
+			return false;
+		return true;
+	}
+	
+	
 }

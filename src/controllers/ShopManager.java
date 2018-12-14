@@ -17,12 +17,13 @@ public class ShopManager implements Visitable{
 	
 	@Getter @NonNull private Shop shop;
 	
-	public ShopManager(String shopName, Geotag location){
-		this.shop = new Shop(shopName, location);
-	}
 	public ShopManager(Shop shop){
 		this.shop = shop;
 	}
+	public ShopManager(String shopName, Geotag location){
+		this.shop = new Shop(shopName, location);
+	}
+	
 	public void addItem(Product product, int currItemsCount) {
 		Optional<CommodityItem> ci = shop.getProducts().stream().
 				filter(x -> x.getItem().getClass() == product.getClass() && x.getItem().getProductName() == product.getProductName()).findFirst();
@@ -49,9 +50,9 @@ public class ShopManager implements Visitable{
 	}
 	
 	public void CheckWhatsNeed() {
-		shop.getProducts().stream()
-			.filter(x->x.getCurrItemsCount() < x.getAllItemsCount())
-			.map(x->new DemandManager(x.getItem(),x.getAllItemsCount()-x.getCurrItemsCount(),shop));
+//		shop.getProducts().stream()
+//			.filter(x->x.getCurrItemsCount() < x.getAllItemsCount())
+//			.map(x->new DemandManager(x.getItem(),x.getAllItemsCount()-x.getCurrItemsCount(),shop));
 	}
 	
 	public List<Product> productList() {

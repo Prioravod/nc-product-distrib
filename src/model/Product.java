@@ -13,8 +13,8 @@ public abstract class Product {
 	@Getter @Setter private String productName;
 	@Getter @Setter private String discription;
 	@Getter @Setter private Company company;
-	@Getter @Setter private long price;		
-	
+	@Getter @Setter private long price;	
+		
 	public Product(Company company,String productName, long price) {
 		this.company = company;
 		this.productName = productName;
@@ -25,10 +25,10 @@ public abstract class Product {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
+		if (obj.getClass() != this.getClass()) return false;
 		if (obj.equals(null)) return false;
 		if (
 				((Product)obj).productName == this.productName &&
-				((Product)obj).discription == this.discription &&
 				((Product)obj).price == this.price
 			) return true;
 		return false;

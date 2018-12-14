@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,16 +17,14 @@ public class Demand {
 	
 	private static int currId;
 	@Getter private int id;
-	@Getter @Setter private Product productType;
-	@Getter @Setter private int count;
+	@Getter @Setter private Map<Product,Integer> products;
 	@Getter @Setter private LocalDateTime date;
 	@Getter @Setter private Shop shop;
 	
 	
-	public Demand(Product productType, int count,Shop shop) {
+	public Demand(Map<Product,Integer> products,Shop shop) {
 		this.id = currId++;
-		this.productType = productType;
-		this.count = count;
+		this.products = products;
 		this.date = LocalDateTime.now();
 		this.shop = shop;
 	}

@@ -8,14 +8,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import interfaces.Visitable;
+import lombok.NonNull;
 import model.Geotag;
 import model.Product;
 import model.Transport;
 
-public class LogisticManager {
+public class TransportManager {
 	
 	private Transport transport;
 	
+	public TransportManager(@NonNull Transport transport) {
+		this.transport = transport;
+	}
+
 	public void addNewCargoToRoutePoint(Visitable target, Map<Product,Integer> cargo) {
 		Map<Visitable,Map<Product,Integer>> routeList = transport.getRouteList();
 		Map<Product,Integer> optionalOldCargo = routeList.get(target);
@@ -52,6 +57,7 @@ public class LogisticManager {
 	}
 	
 	public void arrival(Visitable now) {
+		transport.setTransit(false);
 		transport.setCurrentVisitablePlace(now);
 		Map<Product,Integer> cargo = getCargo(now);
 		now.handlingCargo(cargo);
